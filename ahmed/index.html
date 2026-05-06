@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#050505">
+    <title>THE NOOR PRO - H-MODY SYSTEM</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="wizard-mode dark-theme">
+
+    <div id="particle-container">
+        <canvas id="bgCanvas"></canvas>
+    </div>
+
+    <div id="loader" class="loader-wrapper">
+        <div class="loader-inner">
+            <div class="logo-container">
+                <span class="glitch-icon">💀</span>
+                <div class="scan-line"></div>
+            </div>
+            <h1 class="main-dev-name">💀 𝐀𝐇𝐌𝐄𝐃 😈</h1>
+            <div class="typing-text" id="loaderStatus">Initializing Matrix...</div>
+            <div class="mega-progress-bar">
+                <div class="progress-fill" id="loadProgress"></div>
+                <div class="progress-glow"></div>
+            </div>
+            <div class="loading-stats">
+                <span id="loadPercent">0%</span>
+                <span id="loadModule">CORE_SYSTEM</span>
+            </div>
+        </div>
+    </div>
+
+    <aside class="side-menu" id="sideMenu">
+        <div class="menu-glass-overlay"></div>
+        <div class="menu-content">
+            <div class="dev-header">
+                <div class="dev-img-box">
+                    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=Ahmed&backgroundColor=00f2fe" alt="Dev">
+                    <div class="online-indicator"></div>
+                </div>
+                <h2 class="menu-title">القرصان حٓمو٘ـᬽـدي</h2>
+                <p class="menu-subtitle">H-MODY COMMANDER</p>
+            </div>
+            
+            <ul class="nav-links">
+                <li class="nav-item active" onclick="switchTab('main')">
+                    <i class="fas fa-th-large"></i> <span>الرئيسية المركزية</span>
+                </li>
+                <li class="nav-item" onclick="switchTab('dhikr')">
+                    <i class="fas fa-fingerprint"></i> <span>المسبحة النووية</span>
+                </li>
+                <li class="nav-item" onclick="switchTab('quran')">
+                    <i class="fas fa-quran"></i> <span>المكتبة النورانية</span>
+                </li>
+                <li class="nav-item" onclick="switchTab('system')">
+                    <i class="fas fa-microchip"></i> <span>أدوات الصلاحيات</span>
+                </li>
+                <li class="nav-item" onclick="switchTab('settings')">
+                    <i class="fas fa-user-gear"></i> <span>إعدادات النظام</span>
+                </li>
+                <li class="nav-item" onclick="switchTab('about')">
+                    <i class="fas fa-shield-halved"></i> <span>ملف الحاكم</span>
+                </li>
+            </ul>
+
+            <div class="menu-footer">
+                <p>إصدار الحاكم v2.0.0</p>
+            </div>
+        </div>
+    </aside>
+
+    <main id="appBody">
+        <header class="main-header">
+            <div class="header-left">
+                <button id="menuBtn" class="control-btn"><i class="fas fa-bars-staggered"></i></button>
+            </div>
+            <div class="header-center">
+                <div class="clock-box">
+                    <span id="digitalClock">00:00:00</span>
+                    <small id="clockAmPm">--</small>
+                </div>
+            </div>
+            <div class="header-right">
+                <button id="wizardToggle" class="control-btn magic-active"><i class="fas fa-wand-magic-sparkles"></i></button>
+            </div>
+        </header>
+
+        <div class="main-scroll-area">
+            
+            <section id="tab-main" class="tab-content active">
+                <div class="welcome-card">
+                    <div class="card-inner">
+                        <h3 id="currentHijri">-- رمضان ----</h3>
+                        <div class="location-box"><i class="fas fa-location-dot"></i> <span id="userCity">جاري تحديد الموقع...</span></div>
+                    </div>
+                </div>
+
+                <div class="prayer-times-container">
+                    <div class="prayer-card active" id="prayer-fajr">
+                        <span class="p-name">الفجر</span>
+                        <span class="p-time">--:--</span>
+                    </div>
+                    <div class="prayer-card" id="prayer-dhuhr">
+                        <span class="p-name">الظهر</span>
+                        <span class="p-time">--:--</span>
+                    </div>
+                    <div class="prayer-card" id="prayer-asr">
+                        <span class="p-name">العصر</span>
+                        <span class="p-time">--:--</span>
+                    </div>
+                    <div class="prayer-card" id="prayer-maghrib">
+                        <span class="p-name">المغرب</span>
+                        <span class="p-time">--:--</span>
+                    </div>
+                    <div class="prayer-card" id="prayer-isha">
+                        <span class="p-name">العشاء</span>
+                        <span class="p-time">--:--</span>
+                    </div>
+                </div>
+
+                <div class="news-ticker">
+                    <div class="ticker-label">تنبيه</div>
+                    <marquee>مرحباً بك في نظام "نور المسلم" بإشراف القرصان حمودي.. النظام يعمل بكفاءة 100%.</marquee>
+                </div>
+            </section>
+
+            <section id="tab-dhikr" class="tab-content">
+                <div class="mega-dhikr-container">
+                    <div class="dhikr-header">
+                        <select id="dhikrType" class="dhikr-select">
+                            <option value="ast">استغفر الله</option>
+                            <option value="sh">سبحان الله</option>
+                            <option value="hm">الحمد لله</option>
+                            <option value="ak">الله أكبر</option>
+                        </select>
+                    </div>
+                    
+                    <div class="visual-counter">
+                        <div class="circle-box">
+                            <svg class="svg-ring">
+                                <circle cx="100" cy="100" r="90" class="ring-bg"></circle>
+                                <circle cx="100" cy="100" r="90" id="mainRing" class="ring-fill"></circle>
+                            </svg>
+                            <div class="counter-val">
+                                <span id="mainCounter">0</span>
+                                <small id="dhikrLabel">استغفار</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-zone">
+                        <button id="dhikrTapBtn" class="master-tap">
+                            <div class="btn-ripple"></div>
+                            <span>اضغط</span>
+                        </button>
+                        <div class="quick-actions">
+                            <button onclick="resetCurrentDhikr()"><i class="fas fa-undo"></i></button>
+                            <button onclick="toggleSound()"><i id="soundIcon" class="fas fa-volume-up"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="leaderboard-mini">
+                        <div class="stat-item">
+                            <i class="fas fa-trophy"></i>
+                            <span>الرتبة: <b id="userRank">جندي نوراني</b></span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>الإجمالي: <b id="totalDhikrAll">0</b></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tab-system" class="tab-content">
+                <div class="terminal-box">
+                    <div class="terminal-header">
+                        <span>H-MODY COMMAND CENTER</span>
+                        <div class="dots"><span></span><span></span><span></span></div>
+                    </div>
+                    <div class="terminal-body" id="termOutput">
+                        <p>> System Ready...</p>
+                        <p>> Waiting for user permissions...</p>
+                    </div>
+                </div>
+
+                <div class="power-tools-grid">
+                    <div class="tool-card" onclick="runOptimize()">
+                        <i class="fas fa-bolt-lightning"></i>
+                        <h4>تطهير الرام</h4>
+                        <span>KILL_BACKGROUND</span>
+                    </div>
+                    <div class="tool-card freeze" onclick="runFreeze()">
+                        <i class="fas fa-snowflake"></i>
+                        <h4>تجميد كلي</h4>
+                        <span>PROCESS_FREEZE</span>
+                    </div>
+                    <div class="tool-card net" onclick="runNetBlock()">
+                        <i class="fas fa-wifi-slash"></i>
+                        <h4>قطع الشبكة</h4>
+                        <span>FIREWALL_BLOCK</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tab-about" class="tab-content">
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <div class="glitch-avatar">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ahmed" alt="H-Mody">
+                        </div>
+                        <h2 class="title-nick-1">💀 𝐀𝐇𝐌𝐄𝐃 😈</h2>
+                        <h3 class="title-nick-2">𓅓𓆪الــكــᬼنــ☠️ــج⑅⃝🇾🇪حمــــ͢ـ℘ــ͢ــو٘ډي٘𓆩𓅓</h3>
+                    </div>
+
+                    <div class="bio-content">
+                        <div class="bio-tag">🕸 حاكم المجال البـــ𖤓̟̟̟̟̟̟̥̥̥̥̟͜͡ــٰٰٖٖـرنس حمــــ͢ـ℘ــ͢ــو٘ډي٘ 🕸</div>
+                        <p class="bio-text">مطور تطبيقات أندرويد وويب، خبير في اختراق واختبار ثغرات الأنظمة، ومبتكر "وضع الساحر" في الواجهات البرمجية. أعمل بصمت وأترك الكود يتحدث.</p>
+                    </div>
+
+                    <div class="social-mega-grid">
+                        <a href="https://wa.me/967774772074" class="social-btn wa">
+                            <i class="fab fa-whatsapp"></i>
+                            <div class="s-info"><span>واتساب</span><small>+967 774772074</small></div>
+                        </a>
+                        <a href="https://t.me/HAKERAHMED2" class="social-btn tg">
+                            <i class="fab fa-telegram-plane"></i>
+                            <div class="s-info"><span>تليجرام المطور</span><small>@HAKERAHMED2</small></div>
+                        </a>
+                        <a href="https://t.me/HAKERAHMED7" class="social-btn ch">
+                            <i class="fas fa-satellite-dish"></i>
+                            <div class="s-info"><span>القناة الرسمية</span><small>انضم للمجال</small></div>
+                        </a>
+                    </div>
+
+                    <div class="legal-info">
+                        <span>V2.0.0 PRO EDITION</span>
+                        <span>© 2026 Developed by H-MODY</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <div id="notifyContainer"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
